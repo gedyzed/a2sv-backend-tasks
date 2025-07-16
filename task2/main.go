@@ -65,49 +65,6 @@ func isPalindrome(s string) bool {
 
 }
 
-package main
-
-import (
-	"reflect"
-	"testing"
-)
-
-// Test for wordCount
-func TestWordCount(t *testing.T) {
-	input := "Hello, hello! world... Go go go."
-	expected := map[string]int{
-		"hello": 2,
-		"world": 1,
-		"go":    3,
-	}
-
-	result := wordCount(input)
-	if !reflect.DeepEqual(result, expected) {
-		t.Errorf("Expected %v, but got %v", expected, result)
-	}
-}
-
-// Test for isPalindrome
-func TestIsPalindrome(t *testing.T) {
-	tests := []struct {
-		input    string
-		expected bool
-	}{
-		{"A man, a plan, a canal: Panama", true},
-		{"racecar", true},
-		{"hello", false},
-		{"", true}, // empty string is technically a palindrome
-	}
-
-	for _, test := range tests {
-		result := isPalindrome(test.input)
-		if result != test.expected {
-			t.Errorf("For input '%s', expected %v but got %v", test.input, test.expected, result)
-		}
-	}
-}
-
-
 func main(){
 
 	reader := bufio.NewReader(os.Stdin)
