@@ -43,7 +43,9 @@ func AddTask(c *gin.Context){
 	} 
 
 	data.Tasks = append(data.Tasks, newTask)
-	c.IndentedJSON(http.StatusOK, gin.H{"message" : "successfully created"})
+	c.IndentedJSON(http.StatusCreated, gin.H{
+		"message" : "successfully created", 
+		"task" : newTask})
 }
 
 func DeleteTask(c *gin.Context){
@@ -52,12 +54,12 @@ func DeleteTask(c *gin.Context){
 	for i, task := range data.Tasks {
 		if task.Id == id {
 			data.Tasks = append(data.Tasks[:i], data.Tasks[i + 1:]...)
-			c.IndentedJSON(http.StatusOK, data.Tasks)
+			c.IndentedJSON(http.StatusOK, gin.H{"message" : "Task delete successfully"})
 			return 
 		}
 	} 
 
-	c.IndentedJSON(http.StatusBadRequest, gin.H{"message" : "Task Not Found"})
+	c.IndentedJSON(http.StatusNotFound, gin.H{"message" : "Task Not Found"})
 
 }
 
@@ -79,12 +81,14 @@ func UpdateTask(c *gin.Context){
 			} else if updateTask.Status != "" {
 				data.Tasks[i].Status = updateTask.Status
 			}
-			c.IndentedJSON(http.StatusOK, data.Tasks[i])
+			c.IndentedJSON(http.StatusOK, gin.H{
+				"message": "Task updated successfully",
+				"task": data.Tasks[i]})
 			return 
 		}
 	} 
 
-	c.IndentedJSON(http.StatusBadRequest, gin.H{"message" : "Task Not Found"})
+	c.IndentedJSON(http.StatusNotFound, gin.H{"message" : "Task Not Found"})
 
 }
 

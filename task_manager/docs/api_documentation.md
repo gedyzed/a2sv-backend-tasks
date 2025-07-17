@@ -81,6 +81,7 @@
 ```
 
 * **Status Code:** `201 Created`
+* **Status Code:** `400 BadRequest`
 
 ---
 
@@ -143,4 +144,5 @@
 
   * `200 OK`
   * `404 Not Found` if task not found
+  * `400 Bad Request` invalid input
 
