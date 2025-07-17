@@ -1,5 +1,6 @@
-## 📚 **Task Manager API Documentation**
+##  **Task Manager API Documentation**
 
+---
 
 ### 🔹 `GET /tasks`
 
@@ -10,7 +11,7 @@
 ```json
 [
   {
-    "id": 1,
+    "id": "1",
     "title": "Implement login",
     "description": "Create login route and logic",
     "due_date": "2025-07-20",
@@ -29,14 +30,14 @@
 * **Description:** Get a single task by its ID.
 * **Path Parameter:**
 
-  * `id` (integer) — ID of the task to retrieve
+  * `id` (string) — ID of the task to retrieve
 * **Example Request:**
   `GET /tasks/2`
 * **Response:**
 
 ```json
 {
-  "id": 2,
+  "id": "2",
   "title": "Set up database",
   "description": "Configure PostgreSQL for dev environment",
   "due_date": "2025-07-18",
@@ -71,7 +72,7 @@
 {
   "message": "Task added successfully",
   "task": {
-    "id": 4,
+    "id": "4",
     "title": "New Task",
     "description": "Task details go here",
     "due_date": "2025-07-30",
@@ -80,8 +81,10 @@
 }
 ```
 
-* **Status Code:** `201 Created`
-* **Status Code:** `400 BadRequest`
+* **Status Codes:**
+
+  * `201 Created`
+  * `400 Bad Request` for invalid input
 
 ---
 
@@ -90,7 +93,7 @@
 * **Description:** Delete a task by ID.
 * **Path Parameter:**
 
-  * `id` (integer) — ID of the task to delete
+  * `id` (string) — ID of the task to delete
 * **Example Request:**
   `DELETE /tasks/1`
 * **Response:**
@@ -104,7 +107,7 @@
 * **Status Codes:**
 
   * `200 OK`
-  * `404 Not Found` if task is not found
+  * `404 Not Found` if task not found
 
 ---
 
@@ -113,7 +116,7 @@
 * **Description:** Update a task by ID.
 * **Path Parameter:**
 
-  * `id` (integer) — ID of the task to update
+  * `id` (string) — ID of the task to update
 * **Request Body (JSON):**
 
 ```json
@@ -131,7 +134,7 @@
 {
   "message": "Task updated successfully",
   "task": {
-    "id": 1,
+    "id": "1",
     "title": "Updated Task Title",
     "description": "Updated description",
     "due_date": "2025-08-01",
@@ -144,5 +147,7 @@
 
   * `200 OK`
   * `404 Not Found` if task not found
-  * `400 Bad Request` invalid input
+  * `400 Bad Request` for invalid input
+
+---
 
