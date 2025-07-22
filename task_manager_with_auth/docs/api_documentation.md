@@ -1,4 +1,3 @@
-```markdown
 ## **User Management API Documentation
 
 ## 1. Register User
