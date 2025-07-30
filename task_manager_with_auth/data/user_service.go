@@ -55,7 +55,7 @@ func RegisterUser(user *models.User) (int, *models.User, error) {
 func LoginUser(user *models.User) (int, string, error) {
 	
 	filter := bson.M{"username": user.Username}
-	result :=UserCollection.FindOne(context.TODO(), filter)
+	result := UserCollection.FindOne(context.TODO(), filter)
 
 	var oldUser models.User
 	err := result.Decode(&oldUser)
@@ -77,7 +77,6 @@ func LoginUser(user *models.User) (int, string, error) {
 
 	return http.StatusOK, jwtToken, nil
 }
-
 func PromoteAdmin(username string) (int, error) {
 
 	filter := bson.M{"username": username}
