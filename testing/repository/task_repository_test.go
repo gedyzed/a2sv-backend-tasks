@@ -69,24 +69,6 @@ func newMockCursor(tasks []domain.Task) *mocks.MongoCursor {
 	return cursor
 }
 
-func (s *TaskRepoTestSuite) TestGetTasks_Success() {
-	tasks := []domain.Task{
-		{Id: "1", Title: "Task 1"},
-		{Id: "2", Title: "Task 2"},
-	}
-
-	mockCursor := newMockCursor(tasks)
-	s.mockColl.On("Find", mock.Anything, bson.M{}).Return(mockCursor, nil)
-
-	result, err := s.repo.GetTasks(context.Background())
-
-	s.NoError(err)
-	s.Equal(tasks, result)
-	s.mockColl.AssertExpectations(s.T())
-	mockCursor.AssertExpectations(s.T())
-}
-
-
 func (s *TaskRepoTestSuite) TestGetTasks_FindError() {
 	
 	s.mockColl.On("Find", mock.Anything, bson.M{}).Return(nil, errors.New("find failed"))

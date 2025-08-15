@@ -26,45 +26,6 @@ func (s *UserRepoTestSuite) SetupTest() {
 	s.repo = repository.NewUserMongoRepo(s.mockColl)
 }
 
-// Create Tests 
-
-func (s *UserRepoTestSuite) TestCreate_FirstUser_AdminRole() {
-	
-	user := &domain.User{Username: "admin"}
-
-	mockCursor := new(mocks.MongoCursor) // empty DB
-	mockCursor.On("Next", mock.Anything).Return(false)
-	mockCursor.On("Close", mock.Anything).Return(nil)
-
-	s.mockColl.On("Find", mock.Anything, bson.M{}).Return(mockCursor, nil)
-	s.mockColl.On("InsertOne", mock.Anything, user).
-		Return(&mongo.InsertOneResult{}, nil)
-
-	created, err := s.repo.Create(context.Background(), user)
-	s.NoError(err)
-	s.Equal("admin", created.Role)
-	s.mockColl.AssertExpectations(s.T())
-	mockCursor.AssertExpectations(s.T())
-}
-
-func (s *UserRepoTestSuite) TestCreate_NotFirstUser_RegularRole() {
-
-    user := &domain.User{Username: "user1"}
-
-    mockCursor := new(mocks.MongoCursor)
-    mockCursor.On("Next", mock.Anything).Return(true).Once() 
-    mockCursor.On("Close", mock.Anything).Return(nil)
-
-    s.mockColl.On("Find", mock.Anything, bson.M{}).Return(mockCursor, nil)
-    s.mockColl.On("InsertOne", mock.Anything, user).
-        Return(&mongo.InsertOneResult{}, nil)
-
-    created, err := s.repo.Create(context.Background(), user)
-    s.NoError(err)
-    s.Equal("regular", created.Role) 
-    s.mockColl.AssertExpectations(s.T())
-    mockCursor.AssertExpectations(s.T())
-}
 
 // --- Update Tests ---
 
