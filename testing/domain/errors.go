@@ -15,4 +15,5 @@ var (
 	ErrUsernameOrPassword = errors.New("incorrect username or password")
 	ErrTheUserIsAdminAlready = errors.New("the user has admin privilege already")
 	ErrTaskNotFound = errors.New("task not found")
+	ErrNoChange = errors.New("no modification has been applied")
 )

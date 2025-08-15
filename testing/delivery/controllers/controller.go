@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"net/http"
-	"task-manager-ca/domain"
-	"task-manager-ca/usecases"
+	"task-manager-test/domain"
+	"task-manager-test/usecases"
 
 	"github.com/gin-gonic/gin"
 )

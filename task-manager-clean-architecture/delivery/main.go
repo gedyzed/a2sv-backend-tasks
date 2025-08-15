@@ -5,10 +5,16 @@ import (
 	"task-manager-ca/infrastructure"
 
 	"github.com/gin-gonic/gin"
+    "github.com/joho/godotenv"
+    "log"
 	
 )
 
 func main() {
+
+    if err := godotenv.Load(); err != nil {
+        log.Println(" No .env file found or failed to load it")
+    }
 
     // connect database
     prodDB := infrastructure.DbInit()

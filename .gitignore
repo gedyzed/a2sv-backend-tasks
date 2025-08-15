@@ -1,2 +1,4 @@
 web-service-gin/*
 go-auth/*
+testing/atesting
+testing/simpl_testing
